@@ -13,13 +13,11 @@
   Необхідно реалізувати в класі Manager конструктор, який викликатиме конструктор суперкласу та збільшуватиме salary на 10000.
 
 */
-interface IEmployee {
-   name: string;   
-}
-class Employee implements IEmployee{
+
+class Employee {
   
   constructor(public name: string, private department: string, protected salary: number) {
-    this.salary = salary;
+    
   }
 
   getEmployeeDetails() {
