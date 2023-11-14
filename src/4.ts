@@ -11,33 +11,28 @@ class House {
   protected door: boolean = false;
   protected tenants: Person[] = [];
 
-  constructor(protected key: Key) {
-    this.key = key;
-  }
-  comeIn() {
+  constructor(protected key: Key) {}
+  comeIn(person: Person): void {
     if (this.door) {
-      const newPerson = new Person(this.key);
-      this.tenants.push(newPerson);
+      this.tenants.push(person);
     }
   }
 }
 
 class MyHouse extends House {
   public openDoor(key: Key): void {
-    if (key.getSignature() === this.key.getSignature()) {this.door === true;
-    console.log("Door is open.");}   
+    if (key.getSignature() === this.key.getSignature()) {
+      this.door = true;
+      console.log("Door is open.");
+    }
     console.log(" Door is closed.");
-
   }
 }
 
 class Person {
-  private key: Key;
-  constructor(key: Key) {
-    this.key = key;
-  }
+  constructor(private key: Key) {}
   public getKey(): Key {
-    return key;
+    return this.key;
   }
 }
 const person = new Person(key);
@@ -45,6 +40,6 @@ const house = new MyHouse(key);
 
 house.openDoor(person.getKey());
 
-house.comeIn();
+house.comeIn(person);
 
 export {};
